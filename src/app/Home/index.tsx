@@ -6,7 +6,7 @@ import { Input } from "@/components/Input"
 import { Filter } from "@/components/Filter"
 import { FilterStatus } from "@/types/FilterStatus"
 import { Item } from "@/components/Item"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 const FILTER_STATUS: FilterStatus[] = [FilterStatus.PENDING, FilterStatus.DONE]
 
@@ -26,6 +26,8 @@ export function Home() {
       status: FilterStatus.PENDING,
     }
   }
+
+  useEffect(() => {}, [])
 
   return (
     <View style={styles.container}>
