@@ -1,13 +1,18 @@
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import { FilterStatus } from "@/types/FilterStatus"
+import { Category } from "@/types/Category"
 
 const ITEMS_STORAGE_KEY = "@comprar:items"
 
 export type ItemsStorage = {
-  id: string
-  status: FilterStatus
-  description: string
-}
+  id: string;
+  status: FilterStatus;
+  description: string;
+  category?: Category;
+  quantity?: number;
+  purchasedQuantity?: number;
+  price?: number;
+};
 
 async function get(): Promise<ItemsStorage[]> {
   try {
@@ -36,7 +41,6 @@ async function add(newItem: ItemsStorage): Promise<ItemsStorage[]> {
   const items = await get()
   const updatedItems = [...items, newItem]
   await save(updatedItems)
-  
   return updatedItems
 }
 
@@ -78,4 +82,5 @@ export const itemsStorage = {
   remove,
   clear,
   toggleStatus,
+  save,
 }
